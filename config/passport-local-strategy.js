@@ -42,5 +42,5 @@ passport.deserializeUser(function(id,done){
     });
 });
 
-module.exports = password;
+module.exports = passport;
 
