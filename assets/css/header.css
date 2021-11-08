@@ -1,0 +1,28 @@
+header {
+  height: 40px;
+  background-color: #3efafd;
+  display: flex;
+  justify-content: space-between;
+  text-align: center; }
+  header #logo {
+    margin-left: 10px; }
+    header #logo h3 {
+      font-size: 1.4rem;
+      height: 100%;
+      margin: 0;
+      text-align: center;
+      display: flex;
+      align-items: center; }
+  header #logo:hover {
+    cursor: pointer; }
+  header #right-header {
+    margin-right: 10px; }
+    header #right-header ul {
+      list-style: none;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      padding: 0;
+      width: 120px;
+      justify-content: space-between;
+      align-items: center; }
