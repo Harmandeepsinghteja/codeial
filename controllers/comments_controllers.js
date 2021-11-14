@@ -3,30 +3,29 @@ const Post = require('../models/post')
 
 
 
-module.exports.create = function(req,res){
+module.exports.create =async function(req,res){
+    try{
     
-    Post.findById(req.body.post, function(err,post){
-        if(post){
-            Comment.create({
-                content: req.body.commentContent,
-                user: req.user._id,
-                post: req.body.post
-            }, function(err,comment){
-                if(err){
-                    console.log("Error in creating the Post");
-                }
-                // Updating the comments in Post Array
-                post.comments.push(comment);
-                post.save();
-                return res.redirect('back');
-            } )
-        }
-    })
+    let post = await Post.findById(req.body.post)
+    if(post){
+        let comment =  await Comment.create({
+            content: req.body.commentContent,
+            user: req.user._id,
+            post: req.body.post
+        } );
+        // Updating the comments in Post Array
+        post.comments.push(comment);
+        post.save();
+        return res.redirect('back');
+    }
+}
+
 }
 
 
-module.exports.destroy = function(req,res){
-    Comment.findById(req.params.id, function(err,comment){
+module.exports.destroy = async function(req,res){
+    try {
+        let comment = Comment.findById(req.params.id);
         if(comment.user == req.user.id){
             let postId = comment.post;
             comment.remove();
@@ -38,5 +37,10 @@ module.exports.destroy = function(req,res){
         else{
             res.redirect('back');
         }
-    })
+}
+catch(err){
+    console.log('Error', err);
+    return;
+
+}
 }
