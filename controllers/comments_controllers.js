@@ -19,8 +19,13 @@ module.exports.create =async function(req,res){
         return res.redirect('back');
     }
 }
+catch(err){
+    console.log('Error', err);
+    return;
 
 }
+}
+
 
 
 module.exports.destroy = async function(req,res){
