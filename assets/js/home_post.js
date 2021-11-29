@@ -26,7 +26,7 @@
     // method to create a post in DOM
     let newPostDom = function(post){
         return $(`
-        <li id="post- ${post._id} ">
+        <li id="post-${post._id}">
          
             <small> <a class="delete-post-button"  href="/posts/destroy/${post._id}">Delete</a></small>
             
@@ -57,7 +57,7 @@
                 type:'get',
                 url: $(deleteLink).prop('href'),
                 success: function(data){
-                    $(`#post-$(data.data.post_id)`).remove();
+                    $(`#post-${data.data.post_id}`).remove();
                 },error: function(error){
                     console.log(error.responseText);
                 }
