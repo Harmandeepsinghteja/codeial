@@ -6,6 +6,7 @@
     <% } %>
     <li> <%= post.content %> </li>
     <p><small> <%= post.user.name %> </small> </p>
+    <button><a href="/likes/toggle/?id=<%= post._id %>&type=Post">Like</a></button>
     <div class="post-comments">
             <% if (locals.user) { %>
                     <form action="/comments/create" method="POST">
@@ -15,10 +16,11 @@
                     </form>
             <% } %>
             <div class="post-comments-list">
-                    <ul id ="post-comments-<%= post._id %>"></ul>
+                    <ul id ="post-comments-<%= post._id %>">
                             <% for (comment of post.comments)  { %>
                                 <%- include('_comment') -%>
                             <% } %>
+                    </ul>
             </div>
     </div>
 
